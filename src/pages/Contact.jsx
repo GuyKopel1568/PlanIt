@@ -1,5 +1,7 @@
+import Header from '../ui/Header';
+
 function Contact() {
-  return <div>Contact us</div>;
+  return <Header type="primary">Contact us</Header>;
 }
 
 export default Contact;

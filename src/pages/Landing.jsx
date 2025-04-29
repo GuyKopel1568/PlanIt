@@ -1,5 +1,7 @@
+import Header from '../ui/Header';
+
 function Landing() {
-  return <div>Hello PlanIt!</div>;
+  return <Header type="primary">Hello PlanIt!</Header>;
 }
 
 export default Landing;

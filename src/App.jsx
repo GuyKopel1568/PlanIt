@@ -5,17 +5,20 @@ import Landing from './pages/Landing';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Navbar from './ui/Navbar';
+import Layout from './pages/Layout';
 
 function App() {
   return (
     <DarkModeProvider>
       <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
+        <Layout>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </Layout>
       </BrowserRouter>
     </DarkModeProvider>
   );
