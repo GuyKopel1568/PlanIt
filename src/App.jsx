@@ -9,14 +9,12 @@ function App() {
   return (
     <DarkModeProvider>
       <BrowserRouter>
-        <Layout>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </Layout>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
       </BrowserRouter>
     </DarkModeProvider>
   );
