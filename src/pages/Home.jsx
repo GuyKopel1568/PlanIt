@@ -8,7 +8,7 @@ function Home() {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] w-screen h-screen">
+    <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] w-screen h-screen ">
       <div className="flex items-center justify-center p-10">
         <HomeHeader />
       </div>

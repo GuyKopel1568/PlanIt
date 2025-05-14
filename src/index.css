@@ -152,7 +152,9 @@ html.dark {
   --color-blue-800: #1e40af;
   --color-blue-850: #1b368e;
   --color-blue-900: #1e3a8a;
+  --color-blue-1000: #191c3d;
 
+  -blue-1000: #050a2f;
   /* ===== Red ===== */
   --color-red-50: #fef2f2;
   --color-red-100: #fee2e2;
