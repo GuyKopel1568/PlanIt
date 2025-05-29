@@ -1,11 +1,27 @@
 import { useEffect, useRef, useState } from 'react';
-import FormInput from '../components/FormInput';
+import FormInput from './FormInput';
 import { useDarkMode } from '../context/DarkModeContext';
+import { useUser } from '../hooks/useUser';
 
 function Login({ onClose }) {
   const { isDarkMode } = useDarkMode();
   const [isLoginMode, setIsLoginMode] = useState(true);
-  const [formData, setFormData] = useState({});
+  const { setToken } = useUser();
+
+  // ✅ Initialize all fields to empty strings so formData is always defined
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    confirmPassword: '',
+    firstName: '',
+    lastName: '',
+    username: '',
+    dob: '',
+    phoneNumber: '',
+    address: '',
+    city: '',
+    state: '',
+  });
 
   const modalRef = useRef(null);
 
@@ -31,6 +47,11 @@ function Login({ onClose }) {
     };
   }, [onClose]);
 
+  // ✅ Cleaner state update with dynamic field name
+  const handleChange = (field) => (e) => {
+    setFormData((prev) => ({ ...prev, [field]: e.target.value }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -53,7 +74,7 @@ function Login({ onClose }) {
 
       if (isLoginMode) {
         alert('Login successful!');
-        localStorage.setItem('token', data.token);
+        setToken(data.token);
       } else {
         alert('Account created successfully!');
       }
@@ -127,8 +148,18 @@ function Login({ onClose }) {
         >
           {isLoginMode ? (
             <div className="animate-fadeLeft ease-in transition duration-300 w-full">
-              <FormInput text="Email address" type="email" required={true} />
-              <FormInput text="Password" type="password" required={true} />
+              <FormInput
+                text="Email address"
+                type="email"
+                required={true}
+                onChange={handleChange('email')}
+              />
+              <FormInput
+                text="Password"
+                type="password"
+                required={true}
+                onChange={handleChange('password')}
+              />
               <label className="flex items-center gap-2 justify-between">
                 <span className="flex items-center gap-2">
                   <input type="checkbox" id="rememberMe" />
@@ -144,90 +175,68 @@ function Login({ onClose }) {
               <FormInput
                 text="Email address"
                 type="email"
-                required={true}
-                onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
-                }
+                required
+                onChange={handleChange('email')}
               />
               <FormInput
                 text="Password"
                 type="password"
-                required={true}
-                onChange={(e) =>
-                  setFormData({ ...formData, password: e.target.value })
-                }
+                required
+                onChange={handleChange('password')}
               />
               <FormInput
                 text="Confirm password"
                 type="password"
-                required={true}
-                onChange={(e) =>
-                  setFormData({ ...formData, confirmPassword: e.target.value })
-                }
+                required
+                onChange={handleChange('confirmPassword')}
               />
               <FormInput
                 text="First name"
                 type="text"
-                required={true}
-                onChange={(e) =>
-                  setFormData({ ...formData, firstName: e.target.value })
-                }
+                required
+                onChange={handleChange('firstName')}
               />
               <FormInput
                 text="Last name"
                 type="text"
-                required={true}
-                onChange={(e) =>
-                  setFormData({ ...formData, lastName: e.target.value })
-                }
+                required
+                onChange={handleChange('lastName')}
               />
               <FormInput
                 text="Username"
                 type="text"
-                required={true}
-                onChange={(e) =>
-                  setFormData({ ...formData, username: e.target.value })
-                }
+                required
+                onChange={handleChange('username')}
               />
               <FormInput
                 text="Date of Birth"
                 type="date"
-                required={true}
-                onChange={(e) =>
-                  setFormData({ ...formData, dob: e.target.value })
-                }
+                required
+                onChange={handleChange('dob')}
               />
               <FormInput
                 text="Phone number"
                 type="tel"
-                required={true}
-                onChange={(e) =>
-                  setFormData({ ...formData, phoneNumber: e.target.value })
-                }
+                required
+                onChange={handleChange('phoneNumber')}
               />
               <FormInput
                 text="Address"
                 type="text"
-                required={true}
-                onChange={(e) =>
-                  setFormData({ ...formData, address: e.target.value })
-                }
+                required
+                onChange={handleChange('address')}
               />
               <FormInput
                 text="City"
                 type="text"
-                required={true}
-                onChange={(e) =>
-                  setFormData({ ...formData, city: e.target.value })
-                }
+                required
+                onChange={handleChange('city')}
               />
               <FormInput
                 text="State"
                 type="text"
-                required={true}
-                onChange={(e) =>
-                  setFormData({ ...formData, state: e.target.value })
-                }
+                required
+                onChange={handleChange('state')}
               />
             </div>
           )}

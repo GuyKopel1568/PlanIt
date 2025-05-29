@@ -6,7 +6,7 @@ function HomeHeader() {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
 
   return (
-    <div className="rounded-2xl backdrop-blur-md w-[1100px] bg-white/10 border border-white/20 shadow-xl transition-transform hover:scale-[1.01] hover:shadow-[0_0_30px_rgba(99,102,241,0.5)] ml-[-130px]">
+    <div className="rounded-2xl backdrop-blur-md bg-white/10 border border-white/20 shadow-xl transition-transform hover:scale-[1.01] hover:shadow-[0_0_30px_rgba(99,102,241,0.5)] mt-10">
       <div className="grid grid-cols-1 md:grid-cols-[3fr_1fr] text-white ">
         <div className="p-2 relative ">
           <h2 className="text-xl font-light uppercase">Boarding Pass</h2>

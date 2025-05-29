@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const User = require('../modules/Users');
+const jwt = require('jsonwebtoken');
 
 async function createUser(req, res) {
   try {
@@ -128,6 +129,34 @@ async function insertTwentyUsers(req, res) {
   });
 }
 
+async function loginUser(req, res) {
+  const { email, password } = req.body;
+  console.log('req.body:', req.body);
+
+  try {
+    const user = await User.findOne({ email });
+    console.log('Login email:', email);
+    console.log('Login password:', password);
+    console.log('Found user:', user?.email);
+    console.log('Stored hash:', user?.password);
+    if (!user)
+      return res.status(400).json({ error: 'Invalid email or password' });
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch)
+      return res.status(400).json({ error: 'Invalid email or password' });
+
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+      expiresIn: '1h',
+    });
+
+    res.json({ token });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
+  }
+}
+
 module.exports = {
   createUser,
   getUserById,
@@ -136,4 +165,5 @@ module.exports = {
   deleteUser,
   deleteAllUsers,
   insertTwentyUsers,
+  loginUser,
 };
