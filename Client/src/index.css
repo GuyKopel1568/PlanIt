@@ -230,7 +230,7 @@ body {
   font-size: 1.6rem;
 }
 
-/* .arrow {
+.arrow {
   animation-name: slide-left;
   animation-duration: 5s;
   animation-iteration-count: infinite;
@@ -257,9 +257,8 @@ body {
   50% {
     transform: translateY(-10px);
   }
-} */
-
-@keyframes fadeLeft {
+}
+*/ @keyframes fadeLeft {
   from {
     opacity: 0;
     transform: translateX(20px);

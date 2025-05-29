@@ -32,7 +32,7 @@ function Home() {
     >
       <div
         data-aos="fade-right"
-        className="z-10 flex items-center justify-center w-full lg:w-2/3 p-24"
+        className="z-10 flex items-center justify-center w-full px-4 sm:px-8 md:px-12 lg:w-2/3 lg:p-24 py-12"
       >
         <HomeHeader />
       </div>
