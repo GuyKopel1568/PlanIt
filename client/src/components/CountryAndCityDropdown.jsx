@@ -25,7 +25,7 @@ function CountryAndCityDropdown({ onCountryChange, onCityChange }) {
       <img
         src={`https://flagcdn.com/w40/${value.toLowerCase()}.png`}
         alt={label}
-        className="w-5 h-4"
+        className="w-6 h-5 rounded-full"
       />
       {label}
     </div>
@@ -41,7 +41,8 @@ function CountryAndCityDropdown({ onCountryChange, onCityChange }) {
   });
 
   return (
-    <div className="flex flex-col gap-6 w-[30vw] ">
+    <div className="flex flex-col gap-2 shadow-2xl p-4 rounded-4xl">
+      <p>Select your countries destination</p>
       <Select
         options={countryOptions}
         value={selectedCountries}
@@ -53,18 +54,21 @@ function CountryAndCityDropdown({ onCountryChange, onCityChange }) {
       />
 
       {selectedCountries.length > 0 && cityOptions.length > 0 && (
-        <Select
-          options={cityOptions}
-          value={selectedCities}
-          onChange={handleCityChange}
-          isMulti
-          placeholder={
-            selectedCountries.length === 0
-              ? 'Select countries first'
-              : 'Select cities'
-          }
-          closeMenuOnSelect={false}
-        />
+        <div>
+          <p>Select your cities destination</p>
+          <Select
+            options={cityOptions}
+            value={selectedCities}
+            onChange={handleCityChange}
+            isMulti
+            placeholder={
+              selectedCountries.length === 0
+                ? 'Select countries first'
+                : 'Select cities'
+            }
+            closeMenuOnSelect={false}
+          />
+        </div>
       )}
     </div>
   );

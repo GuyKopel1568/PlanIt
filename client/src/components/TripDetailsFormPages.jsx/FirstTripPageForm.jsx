@@ -3,7 +3,7 @@ function FirstTripPageForm({ onNext }) {
   return (
     <>
       <div className="flex justify-between pr-20 ">
-        <div className="w-[50%] ">
+        <div className="w-[80%] ">
           <h2 className="text-3xl font-bold mb-4">WELCOME</h2>
           <h3 className="text-2xl mb-4">Ready to plan your trip?</h3>
           <p className="text-md mb-6">

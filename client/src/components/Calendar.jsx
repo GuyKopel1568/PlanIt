@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { DateRange } from 'react-date-range';
-import { addDays, set } from 'date-fns';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
-
+import '../styles/Calendar.css';
 function Calendar({ onDateChange }) {
   const [range, setRange] = useState([
     {
@@ -22,14 +21,14 @@ function Calendar({ onDateChange }) {
   };
 
   return (
-    <div>
-      <p>When would you like to go?</p>
+    <div className="flex flex-col shadow-2xl p-4 rounded-4xl w-full h-full justify-start">
+      <p className="mb-2 text-lg font-medium">How long is your trip?</p>
       <DateRange
         editableDateInputs={true}
         onChange={(date) => handleChange(date.selection)}
         moveRangeOnFirstSelection={false}
         ranges={range}
-        className="scale-90"
+        className="w-[20vw] h-[30vh]"
       />
     </div>
   );

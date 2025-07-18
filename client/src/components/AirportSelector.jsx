@@ -20,8 +20,8 @@ function AirportSelector({
   );
 
   return (
-    <div className="w-[30vw]">
-      <label className="block mb-2 font-semibold">{text}</label>
+    <div>
+      <p className="block mb-2 font-semibold">{text}</p>
       <Select
         options={airportOptions}
         value={selectedAirport}

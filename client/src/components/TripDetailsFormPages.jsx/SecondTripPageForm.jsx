@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import CountryAndCitiesDropdowns from '../CountryAndCityDropdown';
 import Calendar from '../Calendar';
 import AirportSelector from '../AirportSelector';
+import FormButton from '../FormButton';
 
 function SecondTripPageForm({ onNext, onBack }) {
   const [selectedCountries, setSelectedCountries] = useState([]);
@@ -51,32 +52,43 @@ function SecondTripPageForm({ onNext, onBack }) {
 
   return (
     <div>
-      <h3>Where do you want to go?</h3>
-      <form className="flex justify-between gap-4">
-        <CountryAndCitiesDropdowns
-          onCountryChange={handleCountryChange}
-          onCityChange={handleCityChange}
-        />
+      <div className="flex flex-col items-center ">
+        <h3>Where do you want to go?</h3>
+      </div>
+      <form className="grid gap-4 grid-cols-3 h-[40vh] pr-20">
+        <div className="flex flex-col gap-6 col-span-2">
+          <CountryAndCitiesDropdowns
+            className="w-full"
+            onCountryChange={handleCountryChange}
+            onCityChange={handleCityChange}
+          />
 
-        <Calendar onDateChange={handleDateChange} />
+          {selectedCountries.length > 0 && (
+            <div className="flex justify-evenly gap-6 shadow-2xl p-4 rounded-4xl h-[12vh]">
+              <AirportSelector
+                text="Select landing Airport"
+                selectedCountries={selectedCountries}
+                selectedAirport={selectedAirport.landingAirport}
+                onAirportChange={handleLandingAirportChange}
+              />
 
-        <AirportSelector
-          text="Select landing Airport"
-          selectedCountries={selectedCountries}
-          selectedAirport={selectedAirport.landingAirport}
-          onAirportChange={handleLandingAirportChange}
-        />
-
-        <AirportSelector
-          text="Select departure Airport"
-          selectedCountries={selectedCountries}
-          selectedAirport={selectedAirport.departureAirport}
-          onAirportChange={handleDepartureAirportChange}
-        />
+              <AirportSelector
+                text="Select departure Airport"
+                selectedCountries={selectedCountries}
+                selectedAirport={selectedAirport.departureAirport}
+                onAirportChange={handleDepartureAirportChange}
+              />
+            </div>
+          )}
+        </div>
+        <div>
+          <Calendar onDateChange={handleDateChange} />
+        </div>
       </form>
-
-      <button onClick={onBack}>Back</button>
-      <button onClick={onNext}>Next</button>
+      <div className="flex justify-between">
+        <FormButton text="Back" onClick={onBack} />
+        <FormButton text="Next" onClick={onNext} />
+      </div>
     </div>
   );
 }

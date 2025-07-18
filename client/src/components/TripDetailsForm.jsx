@@ -22,7 +22,7 @@ function TripDetailsForm() {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
-      <div className="w-[60vw] h-[60vh] bg-white rounded-4xl shadow-lg p-6 overflow-hidden">
+      <div className="w-[80vw] h-[60vh] bg-white rounded-4xl shadow-lg p-6 overflow-hidden">
         {pageNumber === 1 && <FirstTripPageForm onNext={handleNextPage} />}
         {pageNumber === 2 && (
           <SecondTripPageForm
