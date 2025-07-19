@@ -20,13 +20,30 @@ function AirportSelector({
   );
 
   return (
-    <div>
-      <p className="block mb-2 font-semibold">{text}</p>
+    <div className="flex flex-col max-w-[24vw] gap-4 shadow-2xl p-4 rounded-4xl">
+      <p>{text}</p>
       <Select
+        className="w-full"
+        classNamePrefix="airport"
         options={airportOptions}
         value={selectedAirport}
         onChange={onAirportChange}
         placeholder={text}
+        styles={{
+          menu: (base) => ({
+            ...base,
+            zIndex: 50,
+          }),
+          menuList: (base) => ({
+            ...base,
+            maxHeight: '200px',
+            overflowY: 'auto',
+          }),
+          option: (base) => ({
+            ...base,
+            whiteSpace: 'normal',
+          }),
+        }}
       />
     </div>
   );

@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import Select from 'react-select';
 import countryList from 'react-select-country-list';
 import cc from 'countries-cities';
+import '../styles/CountryAndCityDropdown.css';
 
 function CountryAndCityDropdown({ onCountryChange, onCityChange }) {
   const [selectedCountries, setSelectedCountries] = useState([]);
@@ -13,6 +14,11 @@ function CountryAndCityDropdown({ onCountryChange, onCityChange }) {
     setSelectedCountries(selected);
     setSelectedCities([]);
     onCountryChange(selected);
+
+    const x = document.getElementsByClassName('css-1nmdiq5-menu');
+    if (x.length > 0) {
+      console.log(x[0].children);
+    }
   };
 
   const handleCityChange = (selected) => {
@@ -41,26 +47,46 @@ function CountryAndCityDropdown({ onCountryChange, onCityChange }) {
   });
 
   return (
-    <div className="flex flex-col gap-2 shadow-2xl p-4 rounded-4xl">
-      <p>Select your countries destination</p>
-      <Select
-        options={countryOptions}
-        value={selectedCountries}
-        onChange={handleCountryChange}
-        isMulti
-        formatOptionLabel={formatOptionLabel}
-        placeholder="Select countries"
-        closeMenuOnSelect={false}
-      />
+    <div
+      className={`${selectedCountries.length === 0 ? 'h-[20vh] w-[50vw]' : 'h-[42vh]'} flex w-[30vw]  flex-col gap-10 shadow-2xl p-4 rounded-4xl`}
+    >
+      <div className="shadow-2xl p-4 rounded-4xl">
+        <p>Select your countries destination</p>
+        <Select
+          options={countryOptions}
+          value={selectedCountries}
+          onChange={handleCountryChange}
+          isMulti
+          classNamePrefix="rs"
+          styles={{
+            menuList: (base) => ({
+              ...base,
+              maxHeight: '15vh',
+              overflowY: 'auto',
+            }),
+          }}
+          formatOptionLabel={formatOptionLabel}
+          placeholder="Select countries"
+          closeMenuOnSelect={false}
+        />
+      </div>
 
       {selectedCountries.length > 0 && cityOptions.length > 0 && (
-        <div>
+        <div className="shadow-2xl p-4 rounded-4xl">
           <p>Select your cities destination</p>
           <Select
             options={cityOptions}
             value={selectedCities}
             onChange={handleCityChange}
             isMulti
+            classNamePrefix="rs"
+            styles={{
+              menuList: (base) => ({
+                ...base,
+                maxHeight: '15vh',
+                overflowY: 'auto',
+              }),
+            }}
             placeholder={
               selectedCountries.length === 0
                 ? 'Select countries first'

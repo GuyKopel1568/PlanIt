@@ -52,26 +52,24 @@ function SecondTripPageForm({ onNext, onBack }) {
 
   return (
     <div>
-      <div className="flex flex-col items-center ">
+      <div className="flex flex-col items-center  ">
         <h3>Where do you want to go?</h3>
       </div>
-      <form className="grid gap-4 grid-cols-3 h-[40vh] pr-20">
-        <div className="flex flex-col gap-6 col-span-2">
+      <form className="flex justify-between gap-4 pr-5 pl-5 ">
+        <div className="flex gap-2 ">
           <CountryAndCitiesDropdowns
-            className="w-full"
             onCountryChange={handleCountryChange}
             onCityChange={handleCityChange}
           />
 
           {selectedCountries.length > 0 && (
-            <div className="flex justify-evenly gap-6 shadow-2xl p-4 rounded-4xl h-[12vh]">
+            <div className="flex flex-col h-[42vh] gap-8 shadow-2xl p-4 rounded-4xl bg-white ">
               <AirportSelector
                 text="Select landing Airport"
                 selectedCountries={selectedCountries}
                 selectedAirport={selectedAirport.landingAirport}
                 onAirportChange={handleLandingAirportChange}
               />
-
               <AirportSelector
                 text="Select departure Airport"
                 selectedCountries={selectedCountries}
@@ -85,7 +83,7 @@ function SecondTripPageForm({ onNext, onBack }) {
           <Calendar onDateChange={handleDateChange} />
         </div>
       </form>
-      <div className="flex justify-between">
+      <div className="flex justify-between p-8">
         <FormButton text="Back" onClick={onBack} />
         <FormButton text="Next" onClick={onNext} />
       </div>
