@@ -9,7 +9,7 @@ function TripDetailsForm() {
   const [formErrors, setFormErrors] = useState([]);
 
   const handleNextPage = () => {
-    if (pageNumber < 3) {
+    if (pageNumber < 5) {
       setPageNumber(pageNumber + 1);
     }
   };
@@ -30,7 +30,12 @@ function TripDetailsForm() {
             onBack={handlePreviousPage}
           />
         )}
-        {pageNumber === 3 && <ThirdTripPageForm onBack={handlePreviousPage} />}
+        {pageNumber === 3 && (
+          <ThirdTripPageForm
+            onBack={handlePreviousPage}
+            onNext={handleNextPage}
+          />
+        )}
       </div>
     </div>
   );
