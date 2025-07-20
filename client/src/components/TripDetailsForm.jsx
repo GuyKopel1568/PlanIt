@@ -25,7 +25,7 @@ function TripDetailsForm() {
       {/* Blur background */}
       <div className="absolute inset-0 bg-black/30 backdrop-blur-sm z-40"></div>
       <div
-        className="relative w-[75vw] h-[67vh] bg-white rounded-4xl shadow-lg p-6 
+        className="relative lg:w-[75vw] lg:h-[75vh] md:h-[70vh] bg-white rounded-4xl shadow-lg p-6 
   overflow-hidden 
   overflow-x-hidden 
   scroll-smooth 

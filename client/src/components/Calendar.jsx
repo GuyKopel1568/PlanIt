@@ -21,7 +21,7 @@ function Calendar({ onDateChange }) {
   };
 
   return (
-    <div className="flex flex-col gap-4 shadow-2xl  rounded-4xl pr-4 pl-4 pt-7">
+    <div className="flex flex-col gap-4 shadow-2xl rounded-4xl pr-4 pl-4 pt-7">
       <p className="pb-2">How long is your trip?</p>
       <div className="flex items-center ">
         <DateRange
@@ -29,7 +29,7 @@ function Calendar({ onDateChange }) {
           onChange={(date) => handleChange(date.selection)}
           moveRangeOnFirstSelection={false}
           ranges={range}
-          className="scale-110 h-[36vh] rounded-4xl "
+          className="scale-110 lg:h-[40vh] md:h-[38vh] sm:h-[40vh] rounded-4xl "
         />
       </div>
     </div>

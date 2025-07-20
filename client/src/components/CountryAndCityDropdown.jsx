@@ -14,11 +14,6 @@ function CountryAndCityDropdown({ onCountryChange, onCityChange }) {
     setSelectedCountries(selected);
     setSelectedCities([]);
     onCountryChange(selected);
-
-    const x = document.getElementsByClassName('css-1nmdiq5-menu');
-    if (x.length > 0) {
-      console.log(x[0].children);
-    }
   };
 
   const handleCityChange = (selected) => {
@@ -37,7 +32,6 @@ function CountryAndCityDropdown({ onCountryChange, onCityChange }) {
     </div>
   );
 
-  // Create city options from selected countries
   const cityOptions = selectedCountries.flatMap((country) => {
     const cities = cc.getCities(country.label) || [];
     return cities.map((city) => ({
@@ -46,20 +40,25 @@ function CountryAndCityDropdown({ onCountryChange, onCityChange }) {
     }));
   });
 
-  console.log(cityOptions);
-
   return (
     <div
-      className={`${cityOptions.length === 0 ? 'h-[16vh] w-[30vw]' : 'h-[34vh] w-[30vw]'} flex flex-col gap-10 shadow-2xl p-4 rounded-4xl`}
+      className={`
+        ${cityOptions.length === 0 ? 'h-[16vh] md:h-[18vh] ' : 'h-[34vh] md:h-[36vh] sm:h-[38vh] xs:h-[40vh]'}
+        sm:w-[70vw] md:w-[55vw] lg:w-[25vw]
+        flex flex-col gap-6 shadow-2xl p-4 rounded-4xl bg-white
+      `}
     >
-      <div className="shadow-2xl p-4 rounded-4xl">
-        <p>Select your countries destination</p>
+      <div className="shadow-2xl p-4 rounded-4xl bg-white">
+        <p className="mb-2 font-medium">Select your countries destination</p>
         <Select
           options={countryOptions}
           value={selectedCountries}
           onChange={handleCountryChange}
           isMulti
           classNamePrefix="rs"
+          formatOptionLabel={formatOptionLabel}
+          placeholder="Select countries"
+          closeMenuOnSelect={false}
           styles={{
             menuList: (base) => ({
               ...base,
@@ -67,21 +66,21 @@ function CountryAndCityDropdown({ onCountryChange, onCityChange }) {
               overflowY: 'auto',
             }),
           }}
-          formatOptionLabel={formatOptionLabel}
-          placeholder="Select countries"
-          closeMenuOnSelect={false}
         />
       </div>
 
+      {/* City Selector */}
       {selectedCountries.length > 0 && cityOptions.length > 0 && (
-        <div className="shadow-2xl p-4 rounded-4xl">
-          <p>Select your cities destination</p>
+        <div className="shadow-2xl p-4 rounded-4xl bg-white">
+          <p className="mb-2 font-medium">Select your cities destination</p>
           <Select
             options={cityOptions}
             value={selectedCities}
             onChange={handleCityChange}
             isMulti
             classNamePrefix="rs"
+            placeholder="Select cities"
+            closeMenuOnSelect={false}
             styles={{
               menuList: (base) => ({
                 ...base,
@@ -89,12 +88,6 @@ function CountryAndCityDropdown({ onCountryChange, onCityChange }) {
                 overflowY: 'auto',
               }),
             }}
-            placeholder={
-              selectedCountries.length === 0
-                ? 'Select countries first'
-                : 'Select cities'
-            }
-            closeMenuOnSelect={false}
           />
         </div>
       )}
