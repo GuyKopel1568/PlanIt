@@ -9,4 +9,5 @@
 
 .css-1nmdiq5-menu {
   max-height: 15vh;
+  overflow-y: auto;
 }
