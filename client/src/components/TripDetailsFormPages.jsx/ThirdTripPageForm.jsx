@@ -1,5 +1,5 @@
 import React from 'react';
-import FormButton from '../FormButton';
+import FormButton from '../../UI/FormButton';
 
 function ThirdTripPageForm({ onNext, onBack }) {
   return (

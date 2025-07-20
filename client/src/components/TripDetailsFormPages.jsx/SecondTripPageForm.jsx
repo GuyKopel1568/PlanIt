@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import CountryAndCitiesDropdowns from '../CountryAndCityDropdown';
 import Calendar from '../Calendar';
 import AirportSelector from '../AirportSelector';
-import FormButton from '../FormButton';
+import FormButton from '../../UI/FormButton';
 
 function SecondTripPageForm({ onNext, onBack }) {
   const [selectedCountries, setSelectedCountries] = useState([]);
@@ -46,24 +46,27 @@ function SecondTripPageForm({ onNext, onBack }) {
   };
 
   const handleDateChange = ({ startDate, endDate }) => {
-    setSelectedDates(startDate, endDate);
+    setSelectedDates([{ startDate, endDate }]);
     console.log('Selected dates:', startDate, endDate);
   };
 
   return (
-    <div>
-      <div className="flex flex-col items-center  ">
-        <h3>Where do you want to go?</h3>
+    <div className="w-full">
+      <div className="flex flex-col items-center mb-8">
+        <h3 className="text-4xl font-bold text-sky-900">
+          Where do you want to go?
+        </h3>
       </div>
-      <form className="flex justify-between gap-4 pr-5 pl-5 ">
-        <div className="flex gap-2 ">
+
+      <form className="flex flex-col gap-2 ">
+        <div className="flex justify-evenly flex-wrap">
           <CountryAndCitiesDropdowns
             onCountryChange={handleCountryChange}
             onCityChange={handleCityChange}
           />
 
           {selectedCountries.length > 0 && (
-            <div className="flex flex-col h-[42vh] gap-8 shadow-2xl p-4 rounded-4xl bg-white ">
+            <div className="flex flex-col h-[34vh] gap-6 shadow-2xl p-4 rounded-4xl bg-white min-w-[20vw]">
               <AirportSelector
                 text="Select landing Airport"
                 selectedCountries={selectedCountries}
@@ -78,15 +81,15 @@ function SecondTripPageForm({ onNext, onBack }) {
               />
             </div>
           )}
-        </div>
-        <div>
+
           <Calendar onDateChange={handleDateChange} />
         </div>
+
+        <div className="flex justify-between pt-8 px-30">
+          <FormButton text="Back" onClick={onBack} />
+          <FormButton text="Next" onClick={onNext} />
+        </div>
       </form>
-      <div className="flex justify-between p-8">
-        <FormButton text="Back" onClick={onBack} />
-        <FormButton text="Next" onClick={onNext} />
-      </div>
     </div>
   );
 }

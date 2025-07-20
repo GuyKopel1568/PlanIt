@@ -46,9 +46,11 @@ function CountryAndCityDropdown({ onCountryChange, onCityChange }) {
     }));
   });
 
+  console.log(cityOptions);
+
   return (
     <div
-      className={`${selectedCountries.length === 0 ? 'h-[20vh] w-[50vw]' : 'h-[42vh]'} flex w-[30vw]  flex-col gap-10 shadow-2xl p-4 rounded-4xl`}
+      className={`${cityOptions.length === 0 ? 'h-[16vh] w-[30vw]' : 'h-[34vh] w-[30vw]'} flex flex-col gap-10 shadow-2xl p-4 rounded-4xl`}
     >
       <div className="shadow-2xl p-4 rounded-4xl">
         <p>Select your countries destination</p>
