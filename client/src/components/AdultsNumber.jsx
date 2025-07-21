@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { FaUserAlt } from 'react-icons/fa';
 import { TbMoodKidFilled } from 'react-icons/tb';
 
-function Peoplenumber({ onChange }) {
+function AdultsNumber({ onChange }) {
   const [value, setValue] = useState('');
 
   const handleChange = (e) => {
     let newValue = e.target.value;
-    if (newValue > 10) {
-      newValue = 10;
+    if (newValue > 7) {
+      newValue = 7;
     }
     setValue(newValue);
     onChange(newValue);
@@ -16,7 +16,7 @@ function Peoplenumber({ onChange }) {
 
   return (
     <div>
-      <p>Enter the number of people</p>
+      <p>How many adults are included?</p>
       <div className="relative inline-block">
         <input
           className="border border-gray-300 p-2 rounded pr-6 w-[25vw]"
@@ -32,4 +32,4 @@ function Peoplenumber({ onChange }) {
   );
 }
 
-export default Peoplenumber;
+export default AdultsNumber;

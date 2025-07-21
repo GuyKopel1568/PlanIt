@@ -19,7 +19,7 @@ function AccommodationType({ onChange = () => {} }) {
             key={type}
             onClick={() => handleSelect(type)}
             className={`px-4 py-2 rounded-2xl cursor-pointer border 
-              ${selected === type ? ' text-white bg-stone-700' : 'bg-white text-stone-700 '}
+              ${selected === type ? ' text-white bg-stone-700' : 'bg-stone-300 text-stone-700 '}
               hover:bg-stone-200 `}
           >
             {type.charAt(0).toUpperCase() + type.slice(1)}
