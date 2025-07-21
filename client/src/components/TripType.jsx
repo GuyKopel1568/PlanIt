@@ -50,14 +50,25 @@ function TripType({ onChange }) {
     { label: 'Wellness & Spa', value: 'spa', icon: <PiTowelFill /> },
   ];
 
+  const handleTypeSelect = (type) => {
+    if (tripTypes.includes(type.value)) {
+      setTripTypes(tripTypes.filter((t) => t !== type.value));
+    } else {
+      setTripTypes([...tripTypes, type.value]);
+    }
+  };
+
+  console.log('Selected trip type:', tripTypes);
+
   return (
     <div className="flex flex-col gap-4 items-center w-[40vw] rounded-4xl shadow-lg pb-4">
       <p>Trip Type</p>
       <div className="grid grid-cols-3 gap-3">
         {types.map((type) => (
           <div
+            onClick={() => handleTypeSelect(type)}
             key={type.value}
-            className="flex text-center items-center bg-stone-300 rounded-4xl gap-4 p-2 cursor-pointer hover:bg-stone-600 hover:text-stone-100 hover:scale-110  justify-center"
+            className={`flex text-center items-center bg-stone-300 rounded-4xl gap-4 p-2 cursor-pointer hover:bg-stone-600 hover:text-stone-100 hover:scale-110  justify-center ${tripTypes.includes(type.value) ? 'bg-stone-600 text-stone-100' : 'bg-stone-300'}`}
           >
             <span>{type.icon}</span>
             <span className="ml-2">{type.label}</span>

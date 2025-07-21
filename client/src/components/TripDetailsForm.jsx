@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import SecondTripPageForm from './TripDetailsFormPages.jsx/SecondTripPageForm';
 import FirstTripPageForm from './TripDetailsFormPages.jsx/FirstTripPageForm';
 import ThirdTripPageForm from './TripDetailsFormPages.jsx/ThirdTripPageForm';
+import FourthTripPageForm from './TripDetailsFormPages.jsx/FourthTripPageForm';
 
 function TripDetailsForm() {
   const [pageNumber, setPageNumber] = useState(1);
@@ -42,6 +43,12 @@ function TripDetailsForm() {
         )}
         {pageNumber === 3 && (
           <ThirdTripPageForm
+            onBack={handlePreviousPage}
+            onNext={handleNextPage}
+          />
+        )}
+        {pageNumber === 4 && (
+          <FourthTripPageForm
             onBack={handlePreviousPage}
             onNext={handleNextPage}
           />
