@@ -43,7 +43,7 @@ function CountryAndCityDropdown({ onCountryChange, onCityChange }) {
   return (
     <div
       className={`
-        ${cityOptions.length === 0 ? 'h-[16vh] md:h-[18vh] ' : 'h-[34vh] md:h-[36vh] sm:h-[38vh] xs:h-[40vh]'}
+        ${cityOptions.length === 0 && selectedCountries.length === 0 ? 'lg:h-[18vh] md:h-[18vh] lg:w-[40vw] ' : 'lg:h-[34vh] md:h-[36vh] sm:h-[38vh] xs:h-[40vh]'}
         sm:w-[70vw] md:w-[55vw] lg:w-[25vw]
         flex flex-col gap-6 shadow-2xl p-4 rounded-4xl bg-white
       `}

@@ -66,7 +66,7 @@ function SecondTripPageForm({ onNext, onBack }) {
           />
 
           {selectedCountries.length > 0 && (
-            <div className="flex flex-col lg:h-[38vh] md:h-[36vh]  gap-6 shadow-2xl p-4 rounded-4xl bg-white min-w-[20vw]">
+            <div className="flex flex-col lg:h-[34vh] md:h-[36vh]  gap-6 shadow-2xl p-4 rounded-4xl bg-white min-w-[20vw]">
               <AirportSelector
                 text="Select landing Airport"
                 selectedCountries={selectedCountries}

@@ -13,20 +13,27 @@ function ThirdTripPageForm({ onNext, onBack }) {
   const [accommodationType, setAccommodationType] = useState('basic');
   const [isKidsIncluded, setIsKidsIncluded] = useState(false);
 
-  return (
-    <div className="flex flex-col p-8">
-      <form className="flex justify-evenly gap-4">
-        <div className="flex flex-col gap-4 w-full"></div>
-        <Peoplenumber />
-        <TripBudget />
-        <KidsInclude />
+  console.log('Budget:', budget);
+  console.log('People Number:', peopleNumber);
+  console.log('Trip Type:', tripType);
+  console.log('Accommodation Type:', accommodationType);
+  console.log('Is Kids Included:', isKidsIncluded);
 
-        <div className="flex flex-col gap-4 w-full">
-          <AccommodationType />
-          <TripType />
+  return (
+    <div className="flex flex-col">
+      <h4> Help us plan your trip — who’s going, what’s your style?</h4>
+      <form className="flex gap-4">
+        <div className="flex flex-col gap-4 shadow-2xl p-8 rounded-4xl bg-white h-[34vh]">
+          <Peoplenumber onChange={setPeopleNumber} />
+          <TripBudget onChange={setBudget} />
+          <KidsInclude onChange={setIsKidsIncluded} />
+        </div>
+        <div className="flex flex-col gap-4 shadow-2xl p-4 rounded-4xl bg-white h-[58vh]">
+          <AccommodationType onChange={setAccommodationType} />
+          <TripType onChange={setTripType} />
         </div>
       </form>
-      <div className="flex justify-between">
+      <div className="flex justify-between ">
         <FormButton text="Back" onClick={onBack} />
         <FormButton text="Next" onClick={onNext} />
       </div>

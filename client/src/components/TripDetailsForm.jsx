@@ -5,8 +5,6 @@ import ThirdTripPageForm from './TripDetailsFormPages.jsx/ThirdTripPageForm';
 
 function TripDetailsForm() {
   const [pageNumber, setPageNumber] = useState(1);
-  const [formValues, setFormValues] = useState([]);
-  const [formErrors, setFormErrors] = useState([]);
 
   const handleNextPage = () => {
     if (pageNumber < 5) {

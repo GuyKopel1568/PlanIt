@@ -2,12 +2,12 @@
   max-height: 8vh;
 }
 
-.css-1dyz3mf {
+.rs__value-container {
   max-height: 8vh;
   overflow-y: auto;
 }
 
-.css-1nmdiq5-menu {
-  max-height: 15vh;
-  overflow-y: auto;
+.css-1dyz3mf {
+  max-height: 8vh;
+  overflow-y: auto !important;
 }
