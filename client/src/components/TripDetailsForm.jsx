@@ -3,6 +3,7 @@ import SecondTripPageForm from './TripDetailsFormPages.jsx/SecondTripPageForm';
 import FirstTripPageForm from './TripDetailsFormPages.jsx/FirstTripPageForm';
 import ThirdTripPageForm from './TripDetailsFormPages.jsx/ThirdTripPageForm';
 import FourthTripPageForm from './TripDetailsFormPages.jsx/FourthTripPageForm';
+import FifthTripPageForm from './TripDetailsFormPages.jsx/FifthTripPageForm';
 
 function TripDetailsForm() {
   const [pageNumber, setPageNumber] = useState(1);
@@ -53,6 +54,7 @@ function TripDetailsForm() {
             onNext={handleNextPage}
           />
         )}
+        {pageNumber === 5 && <FifthTripPageForm onBack={handlePreviousPage} />}
       </div>
     </div>
   );
