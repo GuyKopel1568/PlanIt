@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 
-function TripBudget({ onChange }) {
-  const [value, setValue] = useState('');
-
+function TripBudget({ onChange, budgetData }) {
   const handleChange = (e) => {
-    setValue(e.target.value);
     onChange(e.target.value);
   };
 
@@ -13,9 +10,9 @@ function TripBudget({ onChange }) {
       <p>Enter your trip budget</p>
       <div className="relative inline-block">
         <input
-          className="border border-gray-300 p-2 rounded pr-6 w-[25vw]"
+          className="border border-gray-300 p-2 rounded pr-6 w-[28vw]"
           type="number"
-          value={value}
+          value={budgetData}
           onChange={handleChange}
         />
         <span className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 pointer-events-none">

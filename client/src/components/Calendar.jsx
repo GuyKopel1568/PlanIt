@@ -1,16 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import '../styles/Calendar.css';
-function Calendar({ onDateChange }) {
-  const [range, setRange] = useState([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: 'selection',
-    },
-  ]);
+function Calendar({ onDateChange, selectedCountries, selectedDates }) {
+  const [range, setRange] = useState(
+    selectedDates || [
+      {
+        startDate: new Date(),
+        endDate: new Date(),
+        key: 'selection',
+      },
+    ]
+  );
+
+  useEffect(() => {
+    if (selectedDates) {
+      setRange(selectedDates.map((r) => ({ ...r, key: 'selection' })));
+    }
+  }, [selectedDates]);
 
   const handleChange = (date) => {
     setRange([date]);
@@ -21,17 +29,18 @@ function Calendar({ onDateChange }) {
   };
 
   return (
-    <div className="flex flex-col gap-4 shadow-2xl rounded-4xl pr-4 pl-4 pt-7">
-      <p className="pb-2">How long is your trip?</p>
-      <div className="flex items-center ">
-        <DateRange
-          editableDateInputs={true}
-          onChange={(date) => handleChange(date.selection)}
-          moveRangeOnFirstSelection={false}
-          ranges={range}
-          className="scale-110 lg:h-[40vh] md:h-[38vh] sm:h-[40vh] rounded-4xl "
-        />
-      </div>
+    <div
+      className={`${selectedCountries.length > 0 ? 'threeCols' : 'twoCols'} shadow-2xl rounded-4xl bg-white p-4 flex flex-col items-center`}
+    >
+      <p className="pb-2 text-lg font-semibold">How long is your trip?</p>
+
+      <DateRange
+        editableDateInputs={true}
+        onChange={(date) => handleChange(date.selection)}
+        moveRangeOnFirstSelection={false}
+        ranges={range}
+        className=""
+      />
     </div>
   );
 }

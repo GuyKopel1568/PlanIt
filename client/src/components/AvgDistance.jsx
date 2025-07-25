@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { IoIosSpeedometer } from 'react-icons/io';
 
-function AvgDistance({ onChange }) {
-  const [value, setValue] = useState('');
-
+function AvgDistance({ onChange, tripData, setTripData }) {
   const handleChange = (e) => {
     const newValue = e.target.value;
-    setValue(newValue);
+    setTripData((prev) => ({ ...prev, avgDistance: newValue }));
     onChange(newValue);
   };
   return (
@@ -16,7 +14,7 @@ function AvgDistance({ onChange }) {
         <input
           className="border border-gray-300 p-2 rounded pr-6 w-[25vw]"
           type="number"
-          value={value}
+          value={tripData.avgDistance}
           onChange={handleChange}
         />
         <span className="absolute  right-2 top-1/2 text-xl transform -translate-y-1/2 text-gray-500 pointer-events-none">

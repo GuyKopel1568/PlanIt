@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Select from 'react-select';
 import airportData from 'airport-data';
 
@@ -8,6 +8,12 @@ function AirportSelector({
   selectedAirport,
   onAirportChange,
 }) {
+  useEffect(() => {
+    if (selectedCountries.length === 0) {
+      onAirportChange(null);
+    }
+  }, [selectedAirport, selectedCountries.length, onAirportChange]);
+
   if (!selectedCountries || selectedCountries.length === 0) return null;
 
   const airportOptions = selectedCountries.flatMap((country) =>
@@ -20,10 +26,10 @@ function AirportSelector({
   );
 
   return (
-    <div className="flex flex-col max-w-[24vw] gap-4 shadow-2xl p-4 rounded-4xl">
+    <div className="flex flex-col max-w-[24vw]  shadow-2xl p-4 rounded-4xl">
       <p>{text}</p>
       <Select
-        className="w-full"
+        className="w-full font-semibold text-lg"
         classNamePrefix="airport"
         options={airportOptions}
         value={selectedAirport}

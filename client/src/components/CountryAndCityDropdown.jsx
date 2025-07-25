@@ -4,20 +4,29 @@ import countryList from 'react-select-country-list';
 import cc from 'countries-cities';
 import '../styles/CountryAndCityDropdown.css';
 
-function CountryAndCityDropdown({ onCountryChange, onCityChange }) {
-  const [selectedCountries, setSelectedCountries] = useState([]);
-  const [selectedCities, setSelectedCities] = useState([]);
-
+function CountryAndCityDropdown({
+  onCountryChange,
+  onCityChange,
+  selectedCountries,
+  selectedCities,
+  setTripData,
+}) {
   const countryOptions = useMemo(() => countryList().getData(), []);
 
   const handleCountryChange = (selected) => {
-    setSelectedCountries(selected);
-    setSelectedCities([]);
+    setTripData((prev) => ({
+      ...prev,
+      selectedCountries: selected,
+      selectedCities: [],
+    }));
     onCountryChange(selected);
   };
 
   const handleCityChange = (selected) => {
-    setSelectedCities(selected);
+    setTripData((prev) => ({
+      ...prev,
+      selectedCities: selected,
+    }));
     onCityChange(selected);
   };
 
@@ -43,13 +52,12 @@ function CountryAndCityDropdown({ onCountryChange, onCityChange }) {
   return (
     <div
       className={`
-        ${cityOptions.length === 0 && selectedCountries.length === 0 ? 'lg:h-[18vh] md:h-[18vh] lg:w-[40vw] ' : 'lg:h-[34vh] md:h-[36vh] sm:h-[38vh] xs:h-[40vh]'}
-        sm:w-[70vw] md:w-[55vw] lg:w-[25vw]
-        flex flex-col gap-6 shadow-2xl p-4 rounded-4xl bg-white
+        ${cityOptions.length === 0 && selectedCountries.length === 0 ? 'lg:h-[16vh] md:h-[18vh]  ' : 'lg:h-[38vh] md:h-[36vh] sm:h-[38vh] xs:h-[40vh]'}
+        flex flex-col justify-evenly gap-6 shadow-2xl p-4 rounded-4xl bg-white
       `}
     >
-      <div className="shadow-2xl p-4 rounded-4xl bg-white">
-        <p className="mb-2 font-medium">Select your countries destination</p>
+      <div className="shadow-2xl p-4 rounded-4xl bg-white text-xl font-medium gap-4 ">
+        <p>Select your countries destination</p>
         <Select
           options={countryOptions}
           value={selectedCountries}
@@ -71,7 +79,7 @@ function CountryAndCityDropdown({ onCountryChange, onCityChange }) {
 
       {/* City Selector */}
       {selectedCountries.length > 0 && cityOptions.length > 0 && (
-        <div className="shadow-2xl p-4 rounded-4xl bg-white">
+        <div className="shadow-2xl p-4 rounded-4xl bg-white text-xl font-medium w-full">
           <p className="mb-2 font-medium">Select your cities destination</p>
           <Select
             options={cityOptions}

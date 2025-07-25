@@ -1,0 +1,39 @@
+.twoCols .rdrMonth {
+  font-size: larger;
+  font-weight: semibold;
+}
+
+.threeCols .rdrMonth {
+  font-size: larger;
+  font-weight: semibold;
+}
+
+.rdrMonth {
+  width: 100%;
+}
+
+.rdrDays {
+  width: 100%;
+  font-size: larger;
+  font-weight: semibold;
+}
+
+/* תיקון חשוב! */
+.twoCols .rdrCalendarWrapper,
+.threeCols .rdrCalendarWrapper {
+  width: 100% !important;
+  max-width: 100%;
+}
+
+/* שליטה בגודל הפונטים */
+.twoCols .rdrDayNumber span {
+  font-size: 18px;
+}
+.threeCols .rdrDayNumber span {
+  font-size: 16px;
+}
+
+.rdrDateDisplay {
+  font-size: 18px;
+  font-weight: semibold;
+}

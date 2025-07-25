@@ -4,49 +4,51 @@ import Calendar from '../Calendar';
 import AirportSelector from '../AirportSelector';
 import FormButton from '../../UI/FormButton';
 
-function SecondTripPageForm({ onNext, onBack }) {
-  const [selectedCountries, setSelectedCountries] = useState([]);
-  const [selectedCities, setSelectedCities] = useState([]);
-  const [selectedDates, setSelectedDates] = useState([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-    },
-  ]);
-  const [selectedAirport, setSelectedAirport] = useState({
-    landingAirport: '',
-    departureAirport: '',
-  });
-
+function SecondTripPageForm({ onNext, onBack, tripData, setTripData }) {
   const handleCountryChange = (countries) => {
-    setSelectedCountries(countries);
-    setSelectedCities([]);
+    setTripData((prev) => ({
+      ...prev,
+      selectedCountries: countries,
+      selectedCities: [],
+    }));
     console.log('Selected countries:', countries);
   };
 
   const handleCityChange = (cities) => {
-    setSelectedCities(cities);
+    setTripData((prev) => ({
+      ...prev,
+      selectedCities: cities,
+    }));
     console.log('Selected cities:', cities);
   };
 
   const handleLandingAirportChange = (airport) => {
-    setSelectedAirport((prev) => ({
+    setTripData((prev) => ({
       ...prev,
-      landingAirport: airport,
+      selectedAirport: {
+        ...prev.selectedAirport,
+        landingAirport: airport,
+      },
     }));
     console.log('Selected landing airport:', airport);
   };
 
   const handleDepartureAirportChange = (airport) => {
-    setSelectedAirport((prev) => ({
+    setTripData((prev) => ({
       ...prev,
-      departureAirport: airport,
+      selectedAirport: {
+        ...prev.selectedAirport,
+        departureAirport: airport,
+      },
     }));
     console.log('Selected departure airport:', airport);
   };
 
   const handleDateChange = ({ startDate, endDate }) => {
-    setSelectedDates([{ startDate, endDate }]);
+    setTripData((prev) => ({
+      ...prev,
+      selectedDates: [{ startDate, endDate }],
+    }));
     console.log('Selected dates:', startDate, endDate);
   };
 
@@ -58,38 +60,48 @@ function SecondTripPageForm({ onNext, onBack }) {
         </h3>
       </div>
 
-      <form className="flex flex-col gap-2 ">
-        <div className="flex justify-evenly flex-wrap">
-          <CountryAndCitiesDropdowns
-            onCountryChange={handleCountryChange}
-            onCityChange={handleCityChange}
-          />
+      <div className="flex flex-col gap-2 ">
+        <div className="flex justify-between items-center gap-4">
+          <div className="flex-1">
+            <CountryAndCitiesDropdowns
+              onCountryChange={handleCountryChange}
+              onCityChange={handleCityChange}
+              selectedCountries={tripData.selectedCountries}
+              selectedCities={tripData.selectedCities}
+              setTripData={setTripData}
+            />
+          </div>
 
-          {selectedCountries.length > 0 && (
-            <div className="flex flex-col lg:h-[34vh] md:h-[36vh]  gap-6 shadow-2xl p-4 rounded-4xl bg-white min-w-[20vw]">
+          {tripData.selectedCountries.length > 0 && (
+            <div className="flex-1 flex flex-col justify-evenly lg:h-[32vh] md:h-[36vh] gap-6 shadow-2xl p-4 rounded-4xl bg-white">
               <AirportSelector
                 text="Select landing Airport"
-                selectedCountries={selectedCountries}
-                selectedAirport={selectedAirport.landingAirport}
+                selectedCountries={tripData.selectedCountries}
+                selectedAirport={tripData.selectedAirport.landingAirport}
                 onAirportChange={handleLandingAirportChange}
               />
               <AirportSelector
                 text="Select departure Airport"
-                selectedCountries={selectedCountries}
-                selectedAirport={selectedAirport.departureAirport}
+                selectedCountries={tripData.selectedCountries}
+                selectedAirport={tripData.selectedAirport.departureAirport}
                 onAirportChange={handleDepartureAirportChange}
               />
             </div>
           )}
 
-          <Calendar onDateChange={handleDateChange} />
+          <div className="flex-1">
+            <Calendar
+              onDateChange={handleDateChange}
+              selectedCountries={tripData.selectedCountries}
+              selectedDates={tripData.selectedDates}
+            />
+          </div>
         </div>
-
-        <div className="flex justify-between pt-8 px-30">
-          <FormButton text="Back" onClick={onBack} />
-          <FormButton text="Next" onClick={onNext} />
-        </div>
-      </form>
+      </div>
+      <div className="flex justify-evenly px-30">
+        <FormButton text="Back" onClick={onBack} />
+        <FormButton text="Next" onClick={onNext} />
+      </div>
     </div>
   );
 }
