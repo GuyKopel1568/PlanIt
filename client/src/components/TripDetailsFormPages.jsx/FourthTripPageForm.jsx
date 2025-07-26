@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import TransportationMode from '../TransportationMode';
 import FormButton from '../../UI/FormButton';
 import AvgDistance from '../AvgDistance';
@@ -8,47 +8,45 @@ import MustAttractions from '../MustAttractions';
 
 function FourthTripPageForm({ onNext, onBack, tripData, setTripData }) {
   return (
-    <div className="flex flex-col gap-6 pr-10 pl-10">
+    <div className="flex flex-col pr-10 pl-10">
       <h3>Transportation Preferences</h3>
-      <div className="flex gap-6 justify-between">
-        <div className="flex flex-col gap-6">
+      <div className="flex justify-between">
+        <div className="flex flex-col gap-4 ">
           <TransportationMode
             transportationData={tripData.transportationMode}
             onChange={(setTripData) => (value) =>
               setTripData((prev) => ({ ...prev, transportationMode: value }))
             }
-            tripData={tripData}
             setTripData={setTripData}
           />
           <AvgDistance
+            avgDistanceData={tripData.avgDistance}
             onChange={(setTripData) => (value) =>
               setTripData((prev) => ({ ...prev, avgDistance: value }))
             }
-            tripData={tripData}
             setTripData={setTripData}
           />
           <AvgTime
+            avgTimeData={tripData.avgTime}
             onChange={(setTripData) => (value) =>
               setTripData((prev) => ({ ...prev, avgTime: value }))
             }
-            tripData={tripData}
             setTripData={setTripData}
           />
         </div>
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-4">
           <StarTrip
-            onChange={setTripData}
-            tripData={tripData}
+            startTripData={tripData.isStarTrip}
             setTripData={setTripData}
           />
           <MustAttractions
+            mustAttractionsData={tripData.mustAttractions}
             onChange={setTripData}
-            tripData={tripData}
             setTripData={setTripData}
           />
         </div>
       </div>
-      <div className="flex justify-between pt-8 px-30">
+      <div className="flex justify-evenly px-30 pt-4">
         <FormButton text="Back" onClick={onBack} />
         <FormButton text="Next" onClick={onNext} />
       </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CountryAndCitiesDropdowns from '../CountryAndCityDropdown';
 import Calendar from '../Calendar';
 import AirportSelector from '../AirportSelector';
@@ -98,7 +98,7 @@ function SecondTripPageForm({ onNext, onBack, tripData, setTripData }) {
           </div>
         </div>
       </div>
-      <div className="flex justify-evenly px-30">
+      <div className="flex justify-evenly px-30 pt-2">
         <FormButton text="Back" onClick={onBack} />
         <FormButton text="Next" onClick={onNext} />
       </div>

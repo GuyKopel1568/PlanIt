@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FaClock } from 'react-icons/fa';
 
-function AvgTime({ onChange, tripData, setTripData }) {
+function AvgTime({ avgTimeData, onChange, setTripData }) {
   const handleChange = (e) => {
     const newValue = e.target.value;
     setTripData((prev) => ({ ...prev, avgTime: newValue }));
@@ -14,7 +14,7 @@ function AvgTime({ onChange, tripData, setTripData }) {
         <input
           className="border border-gray-300 p-2 rounded pr-6 w-[25vw]"
           type="number"
-          value={tripData.avgTime}
+          value={avgTimeData}
           onChange={handleChange}
         />
         <span className="absolute  right-2 top-1/2 text-xl transform -translate-y-1/2 text-gray-500 pointer-events-none">

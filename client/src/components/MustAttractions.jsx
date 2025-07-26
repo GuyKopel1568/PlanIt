@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaMapMarkedAlt } from 'react-icons/fa';
 
-function MustAttractions({ onChange, tripData, setTripData }) {
+function MustAttractions({ mustAttractionsData, onChange, setTripData }) {
   return (
     <div className="shadow-2xl p-4 rounded-4xl bg-white w-[30vw] ">
       <p>Please add must-see attractions (comma separated)</p>
@@ -9,6 +9,7 @@ function MustAttractions({ onChange, tripData, setTripData }) {
         <input
           className="border border-gray-300 p-2 rounded-3xl w-[25vw] "
           type="text"
+          value={mustAttractionsData.join(', ')}
           onChange={(e) =>
             setTripData((prev) => ({
               ...prev,

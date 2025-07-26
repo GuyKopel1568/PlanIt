@@ -30,7 +30,7 @@ function Calendar({ onDateChange, selectedCountries, selectedDates }) {
 
   return (
     <div
-      className={`${selectedCountries.length > 0 ? 'threeCols' : 'twoCols'} shadow-2xl rounded-4xl bg-white p-4 flex flex-col items-center`}
+      className={`${selectedCountries.length > 0 ? 'threeCols' : 'twoCols'} shadow-2xl rounded-4xl bg-white p-2 flex flex-col items-center`}
     >
       <p className="pb-2 text-lg font-semibold">How long is your trip?</p>
 
