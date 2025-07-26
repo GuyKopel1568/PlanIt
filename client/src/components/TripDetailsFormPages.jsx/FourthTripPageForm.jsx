@@ -5,6 +5,7 @@ import AvgDistance from '../AvgDistance';
 import AvgTime from '../AvgTime';
 import StarTrip from '../StarTrip';
 import MustAttractions from '../MustAttractions';
+import NumberAttractionsAvg from '../NumberAttractionsAvg';
 
 function FourthTripPageForm({ onNext, onBack, tripData, setTripData }) {
   return (
@@ -36,12 +37,17 @@ function FourthTripPageForm({ onNext, onBack, tripData, setTripData }) {
         </div>
         <div className="flex flex-col gap-4">
           <StarTrip
-            startTripData={tripData.isStarTrip}
+            starTripData={tripData.isStarTrip}
             setTripData={setTripData}
           />
+
+          <NumberAttractionsAvg
+            numberAttractionsAvgData={tripData.numberAttractionsAvg}
+            setTripData={setTripData}
+          />
+
           <MustAttractions
             mustAttractionsData={tripData.mustAttractions}
-            onChange={setTripData}
             setTripData={setTripData}
           />
         </div>

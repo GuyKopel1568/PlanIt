@@ -21,8 +21,9 @@ function TripDetailsForm() {
     transportationMode: '',
     avgDistance: '',
     avgTime: '',
-    isStarTrip: false,
+    isStarTrip: '',
     mustAttractions: [],
+    numberAttractionsAvg: '',
   });
 
   const handleNextPage = () => {
@@ -36,8 +37,6 @@ function TripDetailsForm() {
       setPageNumber((prev) => prev - 1);
     }
   };
-
-  console.log('Trip Data:', tripData);
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">

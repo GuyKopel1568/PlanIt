@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaMapMarkedAlt } from 'react-icons/fa';
 
-function MustAttractions({ mustAttractionsData, onChange, setTripData }) {
+function MustAttractions({ mustAttractionsData, setTripData }) {
   return (
     <div className="shadow-2xl p-4 rounded-4xl bg-white w-[30vw] ">
       <p>Please add must-see attractions (comma separated)</p>

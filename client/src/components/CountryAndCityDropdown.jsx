@@ -52,8 +52,11 @@ function CountryAndCityDropdown({
   return (
     <div
       className={`
-        ${cityOptions.length === 0 && selectedCountries.length === 0 ? 'lg:h-[16vh] md:h-[18vh]  ' : 'lg:h-[38vh] md:h-[36vh] sm:h-[38vh] xs:h-[40vh]'}
-        flex flex-col justify-evenly gap-6 shadow-2xl p-4 rounded-4xl bg-white
+${
+  cityOptions.length === 0
+    ? 'h-[16vh] 2xl:h-[22vh] 3xl:h-[16vh]'
+    : '2xl:h-[50vh] md:h-[36vh] lg:h-[38vh] xl:h-[36vh]'
+}        flex flex-col justify-evenly gap-6 shadow-2xl p-4 rounded-4xl bg-white
       `}
     >
       <div className="shadow-2xl p-4 rounded-4xl bg-white text-xl font-medium gap-4 ">

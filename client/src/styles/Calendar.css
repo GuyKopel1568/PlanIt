@@ -12,28 +12,44 @@
   width: 100%;
 }
 
-.rdrDays {
-  width: 100%;
-  font-size: larger;
-  font-weight: semibold;
-}
-
-/* תיקון חשוב! */
 .twoCols .rdrCalendarWrapper,
 .threeCols .rdrCalendarWrapper {
   width: 100% !important;
   max-width: 100%;
 }
 
-/* שליטה בגודל הפונטים */
 .twoCols .rdrDayNumber span {
-  font-size: 18px;
+  font-size: 14px;
 }
+
 .threeCols .rdrDayNumber span {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .rdrDateDisplay {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: semibold;
+}
+
+/* Calendar.css */
+.twoCols .rdrCalendarWrapper {
+  height: 46vh !important;
+}
+
+.threeCols .rdrCalendarWrapper {
+  height: 46vh !important;
+}
+
+.calendar-small .rdrCalendarWrapper {
+  height: 40vh !important;
+}
+
+/* Optional enhancements */
+.rdrDateDisplay {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.rdrDayNumber span {
+  font-size: 13px;
 }

@@ -1,8 +1,10 @@
+// Calendar.js
 import React, { useState, useEffect } from 'react';
 import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import '../styles/Calendar.css';
+
 function Calendar({ onDateChange, selectedCountries, selectedDates }) {
   const [range, setRange] = useState(
     selectedDates || [
@@ -30,7 +32,7 @@ function Calendar({ onDateChange, selectedCountries, selectedDates }) {
 
   return (
     <div
-      className={`${selectedCountries.length > 0 ? 'threeCols' : 'twoCols'} shadow-2xl rounded-4xl bg-white p-2 flex flex-col items-center`}
+      className={`${selectedCountries.length > 0 ? 'threeCols' : 'twoCols'} shadow-2xl rounded-4xl bg-white flex flex-col items-center`}
     >
       <p className="pb-2 text-lg font-semibold">How long is your trip?</p>
 
@@ -39,7 +41,7 @@ function Calendar({ onDateChange, selectedCountries, selectedDates }) {
         onChange={(date) => handleChange(date.selection)}
         moveRangeOnFirstSelection={false}
         ranges={range}
-        className=""
+        className={`rounded-2xl ${selectedCountries.length === 0 ? 'calendar-small' : ''}`}
       />
     </div>
   );
