@@ -1,5 +1,5 @@
-import { toast } from 'react-toastify';
 import Oauth from './Oauth';
+import { login } from '../api/users';
 
 function LoginForm() {
   const handleSubmit = async (event) => {
@@ -7,27 +7,15 @@ function LoginForm() {
     const email = event.target[0].value;
     const password = event.target[1].value;
 
-    try {
-      const res = await fetch('http://localhost:5000/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
+    const response = await login(email, password);
 
-      const data = await res.json();
-      console.log('data => ', data);
-
-      if (!res.ok) {
-        throw new Error(data.error || 'Registration failed');
-      }
-
-      localStorage.setItem('token', data.token);
-      toast.success('User Logged in!', { autoClose: 3000 });
-    } catch (err) {
-      toast.error('User Loggin in failed', { autoClose: 3000 });
+    if (!response.success) {
+      alert(response.error);
+      return;
     }
+
+    alert('Login successful!');
+    event.target.reset();
   };
 
   return (

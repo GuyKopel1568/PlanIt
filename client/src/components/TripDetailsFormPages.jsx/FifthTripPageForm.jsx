@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import FormButton from '../../UI/FormButton';
+import { saveTrip } from '../../api/trips';
 
 function FifthTripPageForm({ onBack, tripData }) {
+  const [loading, setLoading] = useState(false);
+
   console.log('Trip Data:', tripData);
 
   const countries = tripData.selectedCountries.map((c) => c.label).join(', ');
@@ -34,11 +37,26 @@ function FifthTripPageForm({ onBack, tripData }) {
     </div>
   );
 
+  const handleSave = async () => {
+    setLoading(true);
+    try {
+      const result = await saveTrip(tripData);
+      alert('Trip saved successfully!');
+      console.log('Saved trip:', result);
+    } catch (err) {
+      alert('Failed to save trip.');
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="flex flex-col gap-4 w-full max-h-[70vh] overflow-y-auto pr-2">
       <h3 className="text-3xl font-bold">Summary</h3>
 
       <div className="flex justify-between w-full gap-4">
+        {/* Left column */}
         <div className="w-1/2 flex flex-col gap-4">
           <div className="shadow-2xl p-4 rounded-4xl bg-white flex flex-col gap-4">
             <p className="font-semibold text-sky-900">Destination details</p>
@@ -55,6 +73,7 @@ function FifthTripPageForm({ onBack, tripData }) {
           </div>
         </div>
 
+        {/* Right column */}
         <div className="w-1/2 flex flex-col gap-4">
           <div className="shadow-2xl p-4 rounded-4xl bg-white">
             <p className="font-semibold text-sky-900">
@@ -89,8 +108,14 @@ function FifthTripPageForm({ onBack, tripData }) {
         </div>
       </div>
 
-      <div className="pt-4 self-start">
+      {/* Buttons */}
+      <div className="pt-4 flex gap-4">
         <FormButton text="Back" onClick={onBack} />
+        <FormButton
+          text={loading ? 'Saving...' : 'Save Trip'}
+          onClick={handleSave}
+          disabled={loading}
+        />
       </div>
     </div>
   );
