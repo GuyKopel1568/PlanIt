@@ -41,7 +41,6 @@ function Navbar() {
             : 'bg-transparent dark:bg-transparent text-sky-950 dark:text-sky-100 shadow-md'
         }
       `}
-      // z-[9999] ensures navbar is above all other elements
     >
       {navItems.map((item, index) => (
         <Link
