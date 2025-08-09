@@ -20,7 +20,7 @@ function Application() {
 
   return (
     <div className="p-6 grid grid-cols-[minmax(0,1fr)_30vw] ">
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-y-3">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-y-3">
         {trips.map((trip) => (
           <TripContainer key={trip._id || trip.id} trip={trip} />
         ))}

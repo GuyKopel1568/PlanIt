@@ -11,12 +11,14 @@ function AddTrip() {
   return (
     <>
       <div
-        className="w-[10vw] h-[30vh] p-4 rounded-lg shadow-md border-2 border-dashed border-stone-200
-                   cursor-pointer flex items-center justify-center hover:bg-white/20 hover:backdrop-blur-lg transition-colors"
+        className=" sm:w-[3vw] md:w-[8vw] lg:w-[10vw] h-[30vh] p-4 rounded-lg shadow-md border-2 border-dashed border-stone-200
+             cursor-pointer flex items-center justify-center hover:bg-white/20 hover:backdrop-blur-lg transition-colors"
         onClick={openForm}
       >
-        <div className="flex flex-col items-center gap-5 text-center">
-          <span className="text-gray-500 uppercase">Build another trip</span>
+        <div className="flex flex-col items-center gap-5 text-center ">
+          <span className="text-gray-500 uppercase sm:text-sm md:text-base lg:text-lg break-words text-center">
+            Build another trip
+          </span>
           <FiPlus className="text-gray-500 text-2xl mt-2" />
         </div>
       </div>

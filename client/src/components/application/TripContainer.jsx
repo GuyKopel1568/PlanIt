@@ -18,16 +18,15 @@ function TripContainer({ trip }) {
       <div
         className="
           absolute inset-0
-          bg-white/20
           backdrop-blur-sm
           opacity-0
           transition-opacity duration-500
-          group-hover:opacity-60
+          group-hover:opacity-90
         "
       />
 
       <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-        <div className="text-white text-base px-6 py-3 rounded ">
+        <div className="text-stone-100 text-xl px-6 font-bold py-3 rounded ">
           {trip.selectedCountries.map((country, index) => (
             <span key={index}>
               {country.label}
