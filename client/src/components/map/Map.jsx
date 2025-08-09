@@ -10,7 +10,7 @@ import darkMapStyle from './darkModeMap.json';
 import lightMapStyle from './lightModeMap.json';
 
 const containerStyle = {
-  width: '40%',
+  width: '30vw',
   height: '95vh',
   direction: 'rtl',
   position: 'absolute',
@@ -80,7 +80,7 @@ function Map({ onPlaceSelect }) {
       googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
       libraries={['places']}
     >
-      <div className="mb-2 px-2">
+      {/* <div className="mb-2 px-2">
         <Autocomplete
           onLoad={(auto) => (autocompleteRef.current = auto)}
           onPlaceChanged={handlePlaceChanged}
@@ -91,7 +91,7 @@ function Map({ onPlaceSelect }) {
             className="p-2 border rounded w-full max-w-md"
           />
         </Autocomplete>
-      </div>
+      </div> */}
 
       <GoogleMap
         mapContainerStyle={containerStyle}

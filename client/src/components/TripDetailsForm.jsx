@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import FirstTripPageForm from './TripDetailsFormPages.jsx/FirstTripPageForm';
 import SecondTripPageForm from './TripDetailsFormPages.jsx/SecondTripPageForm';
 import ThirdTripPageForm from './TripDetailsFormPages.jsx/ThirdTripPageForm';
 import FourthTripPageForm from './TripDetailsFormPages.jsx/FourthTripPageForm';
 import FifthTripPageForm from './TripDetailsFormPages.jsx/FifthTripPageForm';
 
-function TripDetailsForm() {
+function TripDetailsForm({ onClose }) {
   const [pageNumber, setPageNumber] = useState(1);
 
   const [tripData, setTripData] = useState({
@@ -26,26 +26,44 @@ function TripDetailsForm() {
     numberAttractionsAvg: '',
   });
 
-  const handleNextPage = () => {
-    if (pageNumber < 5) {
-      setPageNumber((prev) => prev + 1);
-    }
-  };
+  // Close on Escape
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [onClose]);
 
-  const handlePreviousPage = () => {
-    if (pageNumber > 1) {
-      setPageNumber((prev) => prev - 1);
-    }
-  };
+  const handleNextPage = () => setPageNumber((p) => Math.min(5, p + 1));
+  const handlePreviousPage = () => setPageNumber((p) => Math.max(1, p - 1));
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50">
-      <div className="absolute inset-0 bg-black/30 backdrop-blur-sm z-40" />
+    // Click outside closes (onClose). Clicking inside stops propagation.
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+    >
+      {/* Backdrop */}
+      <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" />
 
       <div
-        className="relative lg:w-[75vw] lg:h-[75vh] md:h-[70vh]  rounded-4xl shadow-lg p-6 
-         z-50"
+        className="relative z-50 lg:w-[75vw] lg:h-[75vh] md:h-[70vh] bg-white rounded-4xl shadow-lg p-6"
+        onClick={(e) => e.stopPropagation()}
       >
+        {/* Optional close button */}
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close"
+          className="absolute top-3 right-3 rounded-full w-9 h-9 grid place-items-center
+                     hover:bg-stone-100 transition cursor-pointer"
+        >
+          ✕
+        </button>
+
         {pageNumber === 1 && <FirstTripPageForm onNext={handleNextPage} />}
 
         {pageNumber === 2 && (
@@ -80,6 +98,7 @@ function TripDetailsForm() {
             onBack={handlePreviousPage}
             tripData={tripData}
             setTripData={setTripData}
+            onClose={onClose}
           />
         )}
       </div>

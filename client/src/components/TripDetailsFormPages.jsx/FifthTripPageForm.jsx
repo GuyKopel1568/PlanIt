@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import FormButton from '../../UI/FormButton';
 import { saveTrip } from '../../api/trips';
 
-function FifthTripPageForm({ onBack, tripData }) {
+function FifthTripPageForm({ onBack, tripData, onClose }) {
   const [loading, setLoading] = useState(false);
 
   console.log('Trip Data:', tripData);
@@ -43,6 +43,7 @@ function FifthTripPageForm({ onBack, tripData }) {
       const result = await saveTrip(tripData);
       alert('Trip saved successfully!');
       console.log('Saved trip:', result);
+      onClose();
     } catch (err) {
       alert('Failed to save trip.');
       console.error(err);
