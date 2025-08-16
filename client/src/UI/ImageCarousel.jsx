@@ -1,3 +1,4 @@
+// components/common/ImageCarousel.jsx
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 export default function ImageCarousel({
@@ -8,12 +9,15 @@ export default function ImageCarousel({
   showIndicators = true,
   showArrows = true,
   rounded = 'rounded-lg',
+  height = 'h-[30vh]', // <- NEW: control height (Tailwind class)
 }) {
-  const slides = useMemo(() => {
-    return images
-      .filter(Boolean)
-      .map((img) => (typeof img === 'string' ? { src: img, alt: '' } : img));
-  }, [images]);
+  const slides = useMemo(
+    () =>
+      images
+        .filter(Boolean)
+        .map((img) => (typeof img === 'string' ? { src: img, alt: '' } : img)),
+    [images]
+  );
 
   const [index, setIndex] = useState(0);
   const timerRef = useRef(null);
@@ -21,16 +25,17 @@ export default function ImageCarousel({
 
   useEffect(() => {
     if (!autoPlay || len <= 1) return;
-    timerRef.current = setInterval(() => {
-      setIndex((i) => (i + 1) % len);
-    }, intervalMs);
+    timerRef.current = setInterval(
+      () => setIndex((i) => (i + 1) % len),
+      intervalMs
+    );
     return () => clearInterval(timerRef.current);
   }, [autoPlay, intervalMs, len]);
 
   if (len === 0) {
     return (
       <div
-        className={`relative w-full h-56 md:h-96 bg-gray-100 ${rounded} flex items-center justify-center ${className}`}
+        className={`relative w-full ${height} bg-gray-100 ${rounded} flex items-center justify-center ${className}`}
       >
         <span className="text-gray-400 text-sm">No images</span>
       </div>
@@ -42,7 +47,7 @@ export default function ImageCarousel({
   return (
     <div className={`relative w-full ${className}`}>
       {/* Track */}
-      <div className={`relative overflow-hidden h-56 md:h-96 ${rounded}`}>
+      <div className={`relative overflow-hidden ${height} ${rounded}`}>
         <div
           className="flex h-full transition-transform duration-500 ease-in-out"
           style={{ transform: `translateX(-${index * 100}%)` }}

@@ -1,30 +1,38 @@
+// models/Trip.js
 import mongoose from 'mongoose';
 
 const TripSchema = new mongoose.Schema(
   {
     userId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User', // Assuming you have a User model
+      ref: 'User',
       required: true,
     },
+
     selectedCountries: [
       {
         label: String,
         value: String,
       },
     ],
+
     selectedCities: [
       {
         label: String,
         name: String,
+        value: String,
+        order: { type: Number, default: 0 },
+        days: { type: Number, default: 1, min: 0.5 },
       },
     ],
+
     selectedDates: [
       {
         startDate: Date,
         endDate: Date,
       },
     ],
+
     selectedAirport: {
       landingAirport: {
         label: String,
@@ -35,6 +43,7 @@ const TripSchema = new mongoose.Schema(
         value: String,
       },
     },
+
     budget: String,
     adultNumber: Number,
     tripType: [String],

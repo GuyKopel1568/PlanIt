@@ -81,3 +81,28 @@ export const getTopAttractions = async (cityName, limit = 4) => {
   if (!res.ok) throw new Error(data.error || `Failed: ${res.status}`);
   return data;
 };
+
+export const updateTrip = async (tripId, body) => {
+  const token = localStorage.getItem('token');
+  const res = await fetch(`/api/trips/${tripId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    },
+    body: JSON.stringify(body),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok)
+    throw new Error(data.message || data.error || 'Failed to update trip');
+  return data.trip;
+};
+
+export const updateTripCityDays = async (trip, editedDaysMap) => {
+  const nextCities = (trip.selectedCities || []).map((c, idx) => {
+    const key = c._id || c.value || c.label || String(idx);
+    const n = Number(editedDaysMap[key]);
+    return { ...c, days: Number.isFinite(n) && n > 0 ? n : (c.days ?? 1) };
+  });
+  return updateTrip(trip._id, { selectedCities: nextCities });
+};

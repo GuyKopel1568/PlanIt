@@ -12,7 +12,12 @@ function App() {
   const [isUserSignedIn] = useState(!!localStorage.getItem('token'));
   return (
     <>
-      <div className="min-h-screen w-full bg-[linear-gradient(to_bottom_right,_theme(colors.sky.300),_theme(colors.sky.500),_theme(colors.sky.600))] dark:bg-[linear-gradient(to_bottom_right,_theme(colors.sky.800),_theme(colors.sky.900),_theme(colors.sky.950))] text-sky-950 dark:text-sky-200 transition-colors duration-300">
+      <div
+        className="min-h-screen w-full
+  bg-[linear-gradient(to_bottom_right,_theme(colors.sky.300),_theme(colors.sky.500),_theme(colors.sky.600))]
+  dark:bg-[linear-gradient(to_bottom_right,_theme(colors.slate.800),_theme(colors.slate.900),_theme(colors.slate.950))]
+  text-sky-950 dark:text-slate-200 transition-colors duration-300"
+      >
         {!isUserSignedIn && <Navbar />}
         <Routes>
           <Route path="/" element={<Landing />} />
