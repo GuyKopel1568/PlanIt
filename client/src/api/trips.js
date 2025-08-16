@@ -30,7 +30,6 @@ export async function saveTrip(tripData) {
 
 export const getUserTrips = async () => {
   if (!TOKEN) throw new Error('No authentication token found');
-  console.log('Bearer header:', `Bearer ${localStorage.getItem('token')}`);
 
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 8000);
@@ -64,4 +63,21 @@ export const getUserTrips = async () => {
   } finally {
     clearTimeout(timeout);
   }
+};
+
+export const getTopAttractions = async (cityName, limit = 4) => {
+  const token = localStorage.getItem('token');
+  const res = await fetch(
+    `/api/trips/top-attractions?city=${encodeURIComponent(cityName)}&limit=${limit}`,
+    {
+      headers: {
+        Accept: 'application/json',
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
+      mode: 'cors',
+    }
+  );
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || `Failed: ${res.status}`);
+  return data;
 };
