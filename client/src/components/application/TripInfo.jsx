@@ -73,10 +73,10 @@ function TripInfo({
         Select how many days you want to stay in each city:
       </p>
 
-      <CityDaysEditor
+      {/* <CityDaysEditor
         trip={localTrip}
         onSaved={(updatedTrip) => setLocalTrip(updatedTrip)}
-      />
+      /> */}
 
       <button
         onClick={() => onSelect?.(null)}
